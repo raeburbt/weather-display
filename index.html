@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mammoth Hot Springs Weather</title>
+  <style>
+    body{font-family:sans-serif;padding:1rem}
+    #weather{display:flex;gap:1rem;flex-wrap:wrap}
+    .period{background:#fff;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.1);padding:0.5rem;width:140px;text-align:center}
+    .period img{max-width:48px;margin:0 auto}
+  </style>
+</head>
+<body>
+  <h2>Local Forecast</h2>
+  <div id="weather">Loading…</div>
+  <script>
+    const apiUrl = 'https://api.weather.gov/gridpoints/RIW/51,207/forecast';
+    async function updateWeather() {
+      const c = document.getElementById('weather');
+      try {
+        let r = await fetch(apiUrl);
+        let j = await r.json();
+        c.innerHTML = j.properties.periods.slice(0,5)
+          .map(p=>`
+            <div class="period">
+              <h4>${p.name}</h4>
+              <img src="${p.icon}" alt="">
+              <p><strong>${p.temperature}°${p.temperatureUnit}</strong></p>
+              <p>${p.shortForecast}</p>
+            </div>`).join('');
+      } catch {
+        c.textContent = '⚠️ Unable to load';
+      }
+    }
+    updateWeather();
+    setInterval(updateWeather,600000);
+  </script>
+</body>
+</html>
