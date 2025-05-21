@@ -7,13 +7,17 @@ const puppeteer = require('puppeteer');
   });
 
   const page = await browser.newPage();
+
+  // === NEW: set viewport to match target image size ===
+  await page.setViewport({ width: 320, height: 240 });
+
   // Navigate to your Pages URL
   await page.goto('https://raeburbt.github.io/weather-display/', {
     waitUntil: 'networkidle2'
   });
 
-  // Optional: adjust the clip dimensions to fit just the widget
-  const clip = { x: 0, y: 0, width: 360, height: 260 };
+  // === UPDATED: shrink clip to match viewport ===
+  const clip = { x: 0, y: 0, width: 320, height: 240 };
 
   // Take the screenshot
   await page.screenshot({ path: 'weather.png', clip });
