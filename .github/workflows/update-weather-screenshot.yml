@@ -1,0 +1,31 @@
+name: Update Weather Screenshot
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'    # runs every 15 minutes
+  workflow_dispatch:         # allows manual trigger
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Puppeteer
+        run: npm install puppeteer
+
+      - name: Run screenshot script
+        run: node screenshot.js
+
+      - name: Commit and push weather.png
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "actions@github.com"
+          git add weather.png
+          git commit -m "chore: update weather.png [skip ci]" || echo "No changes to commit"
+          git push
