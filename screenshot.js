@@ -8,7 +8,7 @@ const puppeteer = require('puppeteer');
 
   const page = await browser.newPage();
   // Navigate to your Pages URL
-  await page.goto('https://<your-username>.github.io/weather-display/', {
+  await page.goto('https://raeburbt.github.io/weather-display/', {
     waitUntil: 'networkidle2'
   });
 
