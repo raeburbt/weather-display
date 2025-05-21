@@ -1,5 +1,9 @@
 name: Update Weather Screenshot
 
+# grant write permission so the bot can push weather.png
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '*/15 * * * *'    # runs every 15 minutes
