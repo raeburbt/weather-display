@@ -27,13 +27,25 @@
 
   /* Lay out the forecast cards in a centered row */
   #weather {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5%;
-    width: 90%;                   /* fill most of the screen width */
-    max-width: 1800px;            /* optional cap to avoid extreme stretch */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    width: 90%;
+    max-width: 1800px;
   }
+  .period {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.25rem;
+  }
+  /* include box-sizing here too, so padding doesn’t blow out each cell */
+  .period, .period * {
+    box-sizing: border-box;
+  }
+
 
   /* Enlarge the cards for better readability */
   .period {
