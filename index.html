@@ -1,83 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Mammoth Hot Springs Weather</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #000;    /* solid black behind the cards */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  /* BIGGER HEADER */
-  h2 {
-    margin: 16px 0;
-    font-size: 3.5rem;         /* about 56px tall text */
-    color: white;
-    text-align: center;
-  }
-
-  /* GRID: 5 WIDE, FILL FULL WIDTH */
-  #weather {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    width: 100%;
-    max-width: 1299px;         /* matches your container width */
-    margin-bottom: 16px;
-  }
-
-  /* LARGER CARDS */
-  .period {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    padding: 16px;             /* bigger “breathing room” */
-    font-size: 1.25rem;        /* about 20px text */
-    text-align: center;
-  }
-
-  /* BIGGER ICONS */
-  .period img {
-    max-width: 80px;
-    margin: 0 auto 0.75rem;
-  }
-</style>
-
-
-
+  <meta charset="UTF-8" />
+  <title>Weather Display</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    h2 {
+      margin: 16px 0;
+      font-size: 3.5rem;
+      color: white;
+      text-align: center;
+    }
+    #weather {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      width: 100%;
+      max-width: 1299px;
+      margin: 0 auto 16px; /* center horizontally and add bottom margin */
+    }
+    .period {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      padding: 16px;
+      font-size: 1.25rem;
+      text-align: center;
+    }
+    .period img {
+      max-width: 80px;
+      margin: 0 auto 0.75rem;
+    }
+  </style>
 </head>
 <body>
-  <h2>Mammoth Hot Springs Weather</h2>
+  <h2>Local Forecast</h2>
   <div id="weather">Loading…</div>
   <script>
     const apiUrl = 'https://api.weather.gov/gridpoints/RIW/51,207/forecast';
     async function updateWeather() {
-      const c = document.getElementById('weather');
+      const container = document.getElementById('weather');
       try {
-        let r = await fetch(apiUrl);
-        let j = await r.json();
-        c.innerHTML = j.properties.periods.slice(0,5)
-          .map(p=>`
-            <div class="period">
-              <h4>${p.name}</h4>
-              <img src="${p.icon}" alt="">
-              <p><strong>${p.temperature}°${p.temperatureUnit}</strong></p>
-              <p>${p.shortForecast}</p>
-            </div>`).join('');
-      } catch {
-        c.textContent = '⚠️ Unable to load';
+        const res = await fetch(apiUrl);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        const periods = json.properties.periods.slice(0, 5);
+        container.innerHTML = periods.map(p => `
+          <div class="period">
+            <h3>${p.name}</h3>
+            <img src="${p.icon}" alt="${p.shortForecast}" />
+            <p><strong>${p.temperature}°${p.temperatureUnit}</strong></p>
+            <p>${p.shortForecast}</p>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.innerHTML = `<p>⚠️ Unable to load forecast</p>`;
+        console.error('Weather API error:', err);
       }
     }
     updateWeather();
-    setInterval(updateWeather,600000);
+    setInterval(updateWeather, 10 * 60 * 1000);
   </script>
 </body>
 </html>
