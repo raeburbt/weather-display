@@ -12,25 +12,22 @@
       background-color: #000;
       display: flex;
       flex-direction: column;
-      align-items: center;      /* center children horizontally */
-      justify-content: flex-start; /* stack from top */
+      align-items: center;
+      justify-content: flex-start;
     }
     h2 {
-      margin: 16px 0;
+      margin: 32px 0 16px;
       font-size: 3.5rem;
       color: white;
       text-align: center;
     }
     #weather {
-      flex: 1;                  /* fill remaining vertical space */
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 12px;
       width: 100%;
       max-width: 1299px;
-      align-content: center;    /* center rows vertically */
-      justify-items: center;    /* center items horizontally */
-      padding-bottom: 16px;     /* space below cards */
+      margin: 0 auto 16px; /* center horizontally and add bottom margin */
     }
     .period {
       background: white;
@@ -39,7 +36,6 @@
       padding: 16px;
       font-size: 1.25rem;
       text-align: center;
-      width: 100%;
     }
     .period img {
       max-width: 80px;
@@ -48,7 +44,7 @@
   </style>
 </head>
 <body>
-  <h2>Local Forecast</h2>
+  <h2>Mammoth Hot Springs Forecast</h2>
   <div id="weather">Loading…</div>
   <script>
     const apiUrl = 'https://api.weather.gov/gridpoints/RIW/51,207/forecast';
