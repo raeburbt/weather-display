@@ -9,21 +9,31 @@
     box-sizing: border-box;
   }
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;       /* stack title over weather */
-    justify-content: center;      /* vertical centering */
-    align-items: center;          /* horizontal centering */
-    background: radial-gradient(
-      circle at center,
-      #5c6e82 0%,      /* lightish blue at center */
-      #344759 100%     /* your deep blue at edges */
-    );
-  }
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+
+  /* turn off vertical centering */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  /* start at the top */
+
+  /* horizontally center everything */
+  align-items: center;
+
+  /* push the content down by 25% of the viewport height */
+  padding-top: 25vh;
+
+  /* your nice blue gradient */
+  background: radial-gradient(
+    circle at center,
+    #5c6e82 0%,
+    #344759 100%
+  );
+}
+
 
   /* Title styling */
   h2 {
