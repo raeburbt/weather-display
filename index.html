@@ -4,58 +4,54 @@
   <meta charset="UTF-8">
   <title>Mammoth Hot Springs Weather</title>
 <style>
-  /* full-screen gradient backdrop */
   html, body {
     margin: 0;
     padding: 0;
-    height: 100vh;
     width: 100vw;
-    position: relative;                      /* for absolutely positioned children */
--  background: radial-gradient(
--    circle at center,
--    #5c6e82 0%,
--    #344759 100%
--  );
+    height: 100vh;
+    background-color: #000;    /* solid black behind the cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
 
-  /* title sits 25% down the screen, horizontally centered */
+  /* BIGGER HEADER */
   h2 {
-    position: absolute;
-    top: 25vh;                                /* 25% of viewport height */
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
+    margin: 16px 0;
+    font-size: 3.5rem;         /* about 56px tall text */
     color: white;
-    font-size: 2.5rem;
     text-align: center;
   }
 
-  /* weather cards box centered in the middle of the screen */
+  /* GRID: 5 WIDE, FILL FULL WIDTH */
   #weather {
-    position: absolute;
-    top: 50%;                                 /* 50% down */
-    left: 50%;
-    transform: translate(-50%, -50%);         /* center its origin */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 2rem;
-    width: 90%;
-    max-width: 1800px;
+    gap: 12px;
+    width: 100%;
+    max-width: 1299px;         /* matches your container width */
+    margin-bottom: 16px;
   }
 
-  /* cards remain white and roomy */
+  /* LARGER CARDS */
   .period {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    padding: 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    padding: 16px;             /* bigger “breathing room” */
+    font-size: 1.25rem;        /* about 20px text */
     text-align: center;
-    font-size: 1.25rem;
   }
+
+  /* BIGGER ICONS */
   .period img {
-    max-width: 120px;
-    margin: 0 auto 1rem;
+    max-width: 80px;
+    margin: 0 auto 0.75rem;
   }
 </style>
+
+
 
 </head>
 <body>
