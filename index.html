@@ -4,28 +4,37 @@
   <meta charset="UTF-8">
   <title>Mammoth Hot Springs Weather</title>
 <style>
-  /* Make body a centered column */
+  /* include padding/borders in width calculations */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   html, body {
     margin: 0;
     padding: 0;
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: column;       /* stack children vertically */
-    justify-content: center;      /* center along main axis (vertical) */
-    align-items: center;          /* center along cross-axis (horizontal) */
-    background: #fff;
+    flex-direction: column;       /* stack title over weather */
+    justify-content: center;      /* vertical centering */
+    align-items: center;          /* horizontal centering */
+    background: radial-gradient(
+      circle at center,
+      #5c6e82 0%,      /* lightish blue at center */
+      #344759 100%     /* your deep blue at edges */
+    );
   }
 
-  /* Center the title and give it some breathing room */
+  /* Title styling */
   h2 {
     margin: 0 0 1rem;
     text-align: center;
-    width: 100%;                  /* so centering actually works */
-    font-size: 2rem;              /* bump up for TV legibility */
+    width: 100%;
+    font-size: 2.5rem;    /* bump up for TV */
+    color: white;         /* turn the text white */
   }
 
-  /* Lay out the forecast cards in a centered row */
+  /* Layout the cards in a clean row */
   #weather {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -33,26 +42,12 @@
     width: 90%;
     max-width: 1800px;
   }
+
+  /* Card styling remains white */
   .period {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    padding: 2rem;
-    text-align: center;
-    font-size: 1.25rem;
-  }
-  /* include box-sizing here too, so padding doesn’t blow out each cell */
-  .period, .period * {
-    box-sizing: border-box;
-  }
-
-
-  /* Enlarge the cards for better readability */
-  .period {
-    flex: 0 1 18%;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     padding: 2rem;
     text-align: center;
     font-size: 1.25rem;
@@ -62,6 +57,7 @@
     margin: 0 auto 1rem;
   }
 </style>
+
 
 
 </head>
