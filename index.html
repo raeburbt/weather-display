@@ -4,47 +4,33 @@
   <meta charset="UTF-8">
   <title>Mammoth Hot Springs Weather</title>
 <style>
-  /* include padding/borders in width calculations */
-  *, *::before, *::after {
-    box-sizing: border-box;
+  /* keep your gradient on the body, but don’t pad it down */
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* start at top */
+    align-items: center;
+    background: radial-gradient(
+      circle at center,
+      #5c6e82 0%,
+      #344759 100%
+    );
   }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-
-  /* turn off vertical centering */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;  /* start at the top */
-
-  /* horizontally center everything */
-  align-items: center;
-
-  /* push the content down by 25% of the viewport height */
-  padding-top: 25vh;
-
-  /* your nice blue gradient */
-  background: radial-gradient(
-    circle at center,
-    #5c6e82 0%,
-    #344759 100%
-  );
-}
-
-
-  /* Title styling */
+  /* push the H2 down 25% of the viewport height */
   h2 {
-    margin: 0 0 1rem;
+    margin: 25vh 0 1rem;
     text-align: center;
     width: 100%;
-    font-size: 2.5rem;    /* bump up for TV */
-    color: white;         /* turn the text white */
+    font-size: 2.5rem;
+    color: white;
   }
 
-  /* Layout the cards in a clean row */
+  /* your existing card layout */
   #weather {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -52,8 +38,6 @@ html, body {
     width: 90%;
     max-width: 1800px;
   }
-
-  /* Card styling remains white */
   .period {
     background: white;
     border-radius: 8px;
@@ -67,6 +51,7 @@ html, body {
     margin: 0 auto 1rem;
   }
 </style>
+
 
 
 
