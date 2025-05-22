@@ -4,37 +4,53 @@
   <meta charset="UTF-8">
   <title>Mammoth Hot Springs Weather</title>
 <style>
+  /* Make body a centered column */
   html, body {
     margin: 0;
     padding: 0;
-    width: 100vw;    /* full screen */
-    height: 100vh;   /* full screen */
+    width: 100vw;
+    height: 100vh;
     display: flex;
-    justify-content: center; /* horizontal centering */
-    align-items: center;     /* vertical centering */
-    background: #fff;        /* or whatever background you want */
+    flex-direction: column;       /* stack children vertically */
+    justify-content: center;      /* center along main axis (vertical) */
+    align-items: center;          /* center along cross-axis (horizontal) */
+    background: #fff;
   }
+
+  /* Center the title and give it some breathing room */
+  h2 {
+    margin: 0 0 1rem;
+    text-align: center;
+    width: 100%;                  /* so centering actually works */
+    font-size: 2rem;              /* bump up for TV legibility */
+  }
+
+  /* Lay out the forecast cards in a centered row */
   #weather {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 2%;
-    width: 90%;     /* let it grow to 90% of the screen width */
+    gap: 1.5%;
+    width: 90%;                   /* fill most of the screen width */
+    max-width: 1800px;            /* optional cap to avoid extreme stretch */
   }
+
+  /* Enlarge the cards for better readability */
   .period {
-    flex: 0 1 18%;  /* roughly five cards across */
+    flex: 0 1 18%;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    padding: 1.5rem;
+    padding: 2rem;
     text-align: center;
-    font-size: 1.2rem; /* bump up your type */
+    font-size: 1.25rem;
   }
   .period img {
-    max-width: 100px; /* or larger if you want */
-    margin-bottom: .5rem;
+    max-width: 120px;
+    margin: 0 auto 1rem;
   }
 </style>
+
 
 </head>
 <body>
