@@ -4,40 +4,47 @@
   <meta charset="UTF-8">
   <title>Mammoth Hot Springs Weather</title>
 <style>
-  /* keep your gradient on the body, but don’t pad it down */
+  /* make the page a 2-row grid: 25% for the title, 75% for the cards */
   html, body {
     margin: 0;
     padding: 0;
-    width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;  /* start at top */
-    align-items: center;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 25vh 75vh;
+    grid-template-columns: 1fr;
     background: radial-gradient(
       circle at center,
       #5c6e82 0%,
       #344759 100%
     );
+    justify-items: center;  /* center content horizontally */
+    align-items: center;    /* center content vertically in each row */
   }
 
-  /* push the H2 down 25% of the viewport height */
+  /* Title lives in row 1, aligned to the bottom of that row */
   h2 {
-    margin: 25vh 0 1rem;
-    text-align: center;
-    width: 100%;
+    grid-row: 1;
+    margin: 0;
+    align-self: end;        /* push to bottom of the 25vh cell */
     font-size: 2.5rem;
     color: white;
+    text-align: center;
   }
 
-  /* your existing card layout */
+  /* Cards live in row 2, perfectly centered */
   #weather {
+    grid-row: 2;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
     width: 90%;
     max-width: 1800px;
+    justify-items: center;
+    align-items: center;
   }
+
+  /* Card styling (unchanged) */
   .period {
     background: white;
     border-radius: 8px;
@@ -51,9 +58,6 @@
     margin: 0 auto 1rem;
   }
 </style>
-
-
-
 
 </head>
 <body>
