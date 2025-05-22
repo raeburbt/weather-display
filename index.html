@@ -3,12 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <title>Mammoth Hot Springs Weather</title>
-  <style>
-    body{font-family:sans-serif;padding:1rem}
-    #weather{display:flex;gap:1rem;flex-wrap:wrap}
-    .period{background:#fff;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.1);padding:0.5rem;width:140px;text-align:center}
-    .period img{max-width:48px;margin:0 auto}
-  </style>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;    /* full screen */
+    height: 100vh;   /* full screen */
+    display: flex;
+    justify-content: center; /* horizontal centering */
+    align-items: center;     /* vertical centering */
+    background: #fff;        /* or whatever background you want */
+  }
+  #weather {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2%;
+    width: 90%;     /* let it grow to 90% of the screen width */
+  }
+  .period {
+    flex: 0 1 18%;  /* roughly five cards across */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 1.2rem; /* bump up your type */
+  }
+  .period img {
+    max-width: 100px; /* or larger if you want */
+    margin-bottom: .5rem;
+  }
+</style>
+
 </head>
 <body>
   <h2>Mammoth Hot Springs Weather</h2>
