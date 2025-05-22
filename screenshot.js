@@ -5,14 +5,16 @@ const puppeteer = require('puppeteer');
     args: ['--no-sandbox','--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
+// …after const page = await browser.newPage();
+await page.setViewport({ width: 1299, height: 731 });
+await page.goto(
+  'https://raeburbt.github.io/weather-display/',
+  { waitUntil: 'networkidle2' }
+);
+await page.waitForSelector('.period', { timeout: 10000 });
+// No clip needed if viewport == container
+await page.screenshot({ path: 'weather.png' });
 
-  // 1) Give yourself a giant viewport (here 4K UHD)
-  await page.setViewport({ width: 3840, height: 2160 });
-
-  // 2) Load your wrapper
-  await page.goto('https://raeburbt.github.io/weather-display/', {
-    waitUntil: 'networkidle2'
-  });
 
   // 3) Wait for your cards to appear
   await page.waitForSelector('.period', { timeout: 10000 });
