@@ -4,47 +4,47 @@
   <meta charset="UTF-8">
   <title>Mammoth Hot Springs Weather</title>
 <style>
-  /* make the page a 2-row grid: 25% for the title, 75% for the cards */
+  /* full-screen gradient backdrop */
   html, body {
     margin: 0;
     padding: 0;
     height: 100vh;
     width: 100vw;
-    display: grid;
-    grid-template-rows: 25vh 75vh;
-    grid-template-columns: 1fr;
+    position: relative;                      /* for absolutely positioned children */
     background: radial-gradient(
       circle at center,
       #5c6e82 0%,
       #344759 100%
     );
-    justify-items: center;  /* center content horizontally */
-    align-items: center;    /* center content vertically in each row */
+    overflow: hidden;
   }
 
-  /* Title lives in row 1, aligned to the bottom of that row */
+  /* title sits 25% down the screen, horizontally centered */
   h2 {
-    grid-row: 1;
+    position: absolute;
+    top: 25vh;                                /* 25% of viewport height */
+    left: 50%;
+    transform: translateX(-50%);
     margin: 0;
-    align-self: end;        /* push to bottom of the 25vh cell */
-    font-size: 2.5rem;
     color: white;
+    font-size: 2.5rem;
     text-align: center;
   }
 
-  /* Cards live in row 2, perfectly centered */
+  /* weather cards box centered in the middle of the screen */
   #weather {
-    grid-row: 2;
+    position: absolute;
+    top: 50%;                                 /* 50% down */
+    left: 50%;
+    transform: translate(-50%, -50%);         /* center its origin */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
     width: 90%;
     max-width: 1800px;
-    justify-items: center;
-    align-items: center;
   }
 
-  /* Card styling (unchanged) */
+  /* cards remain white and roomy */
   .period {
     background: white;
     border-radius: 8px;
