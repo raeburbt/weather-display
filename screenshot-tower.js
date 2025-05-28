@@ -1,27 +1,27 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
+  // Launch headless Chromium
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox','--disable-setuid-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
   });
   const page = await browser.newPage();
-// …after const page = await browser.newPage();
-await page.setViewport({ width: 1299, height: 731 });
-await page.goto(
-  'https://raeburbt.github.io/tower.html/',
-  { waitUntil: 'networkidle2' }
-);
-await page.waitForSelector('.period', { timeout: 10000 });
-// No clip needed if viewport == container
-await page.screenshot({ path: 'weather-tower.png' });
 
+  // Match the .message container’s size (1299×731)
+  await page.setViewport({ width: 1299, height: 731 });
 
-  // 3) Wait for your cards to appear
+  // Navigate to your Tower wrapper page
+  await page.goto(
+    'https://raeburbt.github.io/weather-display/index-tower.html',
+    { waitUntil: 'networkidle2' }
+  );
+
+  // Wait for at least one forecast card to load
   await page.waitForSelector('.period', { timeout: 10000 });
 
-  // 4) Snap the screenshot without any clipping
-  //    (it will be the full 3840×2160 image)
+  // Take the screenshot and save as weather-tower.png
   await page.screenshot({ path: 'weather-tower.png' });
 
   await browser.close();
 })();
+
