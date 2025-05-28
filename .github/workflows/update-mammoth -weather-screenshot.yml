@@ -1,4 +1,4 @@
-name: Update Weather Screenshot
+name: Update Mammoth Weather Screenshot
 
 # grant write permission so the bot can push weather.png
 permissions:
