@@ -23,13 +23,13 @@ jobs:
       - name: Install Puppeteer
         run: npm install puppeteer
 
-      - name: Run screenshot script
+      - name: Run Mammoth screenshot
         run: node screenshot-mammoth.js
 
       - name: Commit and push weather.png
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "actions@github.com"
-          git add weather.png
+          git add weather-mammoth.png
           git commit -m "chore: update weather-mammoth.png [skip ci]" || echo "No changes to commit"
           git push
