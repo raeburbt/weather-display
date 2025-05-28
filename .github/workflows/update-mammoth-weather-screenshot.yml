@@ -26,7 +26,7 @@ jobs:
       - name: Run Mammoth screenshot
         run: node screenshot-mammoth.js
 
-      - name: Commit and push weather.png
+      - name: Commit and push Mammoth png
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "actions@github.com"
