@@ -1,8 +1,8 @@
 name: Update Yellowstone Weather Screenshot
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
+ schedule:
+- cron: '0 0,8,16 * * *'  # at 00:00, 08:00 and 16:00 every day
   workflow_dispatch:
 
 permissions:
