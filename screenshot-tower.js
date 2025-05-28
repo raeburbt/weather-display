@@ -1,0 +1,27 @@
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox','--disable-setuid-sandbox']
+  });
+  const page = await browser.newPage();
+// …after const page = await browser.newPage();
+await page.setViewport({ width: 1299, height: 731 });
+await page.goto(
+  'https://raeburbt.github.io/tower.html/',
+  { waitUntil: 'networkidle2' }
+);
+await page.waitForSelector('.period', { timeout: 10000 });
+// No clip needed if viewport == container
+await page.screenshot({ path: 'weather-tower.png' });
+
+
+  // 3) Wait for your cards to appear
+  await page.waitForSelector('.period', { timeout: 10000 });
+
+  // 4) Snap the screenshot without any clipping
+  //    (it will be the full 3840×2160 image)
+  await page.screenshot({ path: 'weather-tower.png' });
+
+  await browser.close();
+})();
