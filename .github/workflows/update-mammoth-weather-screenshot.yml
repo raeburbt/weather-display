@@ -1,13 +1,12 @@
 name: Update Mammoth Weather Screenshot
 
-# grant write permission so the bot can push weather.png
 permissions:
   contents: write
 
 on:
-schedule:
-- cron: '0 0,8,16 * * *'  # at 00:00, 08:00 and 16:00 every day
-  workflow_dispatch:         # allows manual trigger
+  schedule:
+    - cron: '0 0,8,16 * * *'  # at midnight, 08:00, 16:00
+  workflow_dispatch:         # ← correctly indented beside `schedule`
 
 jobs:
   screenshot:
