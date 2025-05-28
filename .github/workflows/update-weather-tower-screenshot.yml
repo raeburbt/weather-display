@@ -1,8 +1,8 @@
-name: Update Yellowstone Weather Screenshot
+name: Update Tower Weather Screenshot
 
 on:
- schedule:
-- cron: '0 0,8,16 * * *'  # at 00:00, 08:00 and 16:00 every day
+  schedule:
+    - cron: '0 0,8,16 * * *'  # at 00:00, 08:00 and 16:00 every day
   workflow_dispatch:
 
 permissions:
@@ -13,23 +13,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
-        with: node-version: '16'
+        with:
+          node-version: '16'
+
       - name: Install Puppeteer deps
-        run: sudo apt-get update && sudo apt-get install -y \
-              libnss3 libatk1.0-0 libcups2 libxcomposite1 \
-              libxrandr2 libxss1 libpangocairo-1.0-0 libgbm1
+        run: |
+          sudo apt-get update \
+            && sudo apt-get install -y \
+               libnss3 libatk1.0-0 libcups2 \
+               libxcomposite1 libxrandr2 libxss1 \
+               libpangocairo-1.0-0 libgbm1
+
       - name: Init npm
         run: npm init -y
+
       - name: Install Puppeteer
         run: npm install puppeteer
+
       - name: Run Tower screenshot
         run: node screenshot-tower.js
-      - name: Commit & push PNG
+
+      - name: Commit & push Tower PNG
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "actions@github.com"
           git add weather-tower.png
-          git commit -m "chore: update yellowstone weather [skip ci]" || echo "No changes"
+          git commit -m "chore: update weather-tower.png [skip ci]" || echo "No changes"
           git push
