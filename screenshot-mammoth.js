@@ -12,8 +12,6 @@ await page.goto(
   { waitUntil: 'networkidle2' }
 );
 await page.waitForSelector('.period', { timeout: 10000 });
-await page.evaluate(() => {
-// No clip needed if viewport == container
 await page.screenshot({ path: 'weather-mammoth.png' });
 
 
