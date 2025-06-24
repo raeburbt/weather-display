@@ -12,6 +12,13 @@ await page.goto(
   { waitUntil: 'networkidle2' }
 );
 await page.waitForSelector('.period', { timeout: 10000 });
+  // ─────── ZOOM HACK ───────
+await page.evaluate(() => {
+  // scale everything by 2× (or whatever factor you choose)
+  document.body.style.transform = 'scale(1.5)';
+  document.body.style.transformOrigin = 'top left';
+});
+// ─────────────────────────
 // No clip needed if viewport == container
 await page.screenshot({ path: 'weather-mammoth.png' });
 
