@@ -15,7 +15,7 @@ await page.waitForSelector('.period', { timeout: 10000 });
   // ─────── ZOOM HACK ───────
 await page.evaluate(() => {
   // scale everything by 2× (or whatever factor you choose)
-  document.body.style.transform = 'scale(1.25)';
+  document.body.style.transform = 'scale(1.05)';
   document.body.style.transformOrigin = 'top left';
 });
 // ─────────────────────────
