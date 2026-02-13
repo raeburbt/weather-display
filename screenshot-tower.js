@@ -12,7 +12,7 @@ const puppeteer = require('puppeteer');
 
   // Navigate to your Tower wrapper page
   await page.goto(
-    'https://raeburbt.github.io/weather-display/index-tower.html',
+    'https://yelldigital.github.io/weather-display/index-tower.html',
     { waitUntil: 'networkidle2' }
   );
 
